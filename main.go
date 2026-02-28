@@ -32,7 +32,6 @@ func (p *FlakyPlugin) OnStorageUpdate(current types.Storage) (types.Storage, err
 }
 
 func (p *FlakyPlugin) OnDeviceCreate(dev types.Device) (types.Device, error) {
-	dev.Config = types.Storage{Meta: "flaky-recovery-meta"}
 	return dev, nil
 }
 func (p *FlakyPlugin) OnDeviceUpdate(dev types.Device) (types.Device, error) { return dev, nil }
