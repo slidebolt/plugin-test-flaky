@@ -24,6 +24,8 @@ func (p *FlakyPlugin) OnReady() {
 	}
 }
 
+func (p *FlakyPlugin) OnShutdown() {}
+
 func (p *FlakyPlugin) OnHealthCheck() (string, error) { return "perfect", nil }
 func (p *FlakyPlugin) OnStorageUpdate(current types.Storage) (types.Storage, error) {
 	return current, nil
