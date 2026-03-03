@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"log"
 	"strconv"
 
@@ -22,6 +23,10 @@ func (p *FlakyPlugin) OnReady() {
 	if p.attempts < 3 {
 		panic("Deterministic Crash")
 	}
+}
+
+func (p *FlakyPlugin) WaitReady(ctx context.Context) error {
+	return nil
 }
 
 func (p *FlakyPlugin) OnShutdown() {}
@@ -50,10 +55,11 @@ func (p *FlakyPlugin) OnEntitiesList(d string, c []types.Entity) ([]types.Entity
 	return c, nil
 }
 
-func (p *FlakyPlugin) OnCommand(cmd types.Command, entity types.Entity) (types.Entity, error) {
+func (p *FlakyPlugin) OnCommandTyped(req types.CommandRequest[types.GenericPayload], entity types.Entity) (types.Entity, error) {
 	return entity, nil
 }
-func (p *FlakyPlugin) OnEvent(evt types.Event, entity types.Entity) (types.Entity, error) {
+
+func (p *FlakyPlugin) OnEventTyped(evt types.EventTyped[types.GenericPayload], entity types.Entity) (types.Entity, error) {
 	return entity, nil
 }
 
