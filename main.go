@@ -64,7 +64,11 @@ func (p *FlakyPlugin) OnEventTyped(evt types.EventTyped[types.GenericPayload], e
 }
 
 func main() {
-	if err := runner.NewRunner(&FlakyPlugin{}).Run(); err != nil {
+	r, err := runner.NewRunner(&FlakyPlugin{})
+	if err != nil {
+		log.Fatal(err)
+	}
+	if err := r.Run(); err != nil {
 		log.Fatal(err)
 	}
 }
