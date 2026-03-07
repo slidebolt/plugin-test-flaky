@@ -64,11 +64,7 @@ func (p *FlakyPlugin) OnEvent(evt types.Event, entity types.Entity) (types.Entit
 }
 
 func main() {
-	r, err := runner.NewRunner(&FlakyPlugin{})
-	if err != nil {
-		log.Fatal(err)
-	}
-	if err := r.Run(); err != nil {
+	if err := runner.RunCLI(func() runner.Plugin { return &FlakyPlugin{} }); err != nil {
 		log.Fatal(err)
 	}
 }
