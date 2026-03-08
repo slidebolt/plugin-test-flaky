@@ -12,3 +12,5 @@ vendor/
 !.env.example
 TASKS/
 plugin-test-flaky
+
+scripts/.release_guard
