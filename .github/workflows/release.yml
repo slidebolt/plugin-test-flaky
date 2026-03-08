@@ -41,6 +41,8 @@ jobs:
           go-version-file: go.mod
 
       - name: Update internal SDK dependencies
+        env:
+          GOPROXY: direct
         run: |
           grep -E '^\t' go.mod | grep 'github.com/slidebolt/sdk' | awk '{print $1"@latest"}' | xargs -r go get
           go mod tidy
